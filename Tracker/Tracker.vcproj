@@ -111,7 +111,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;C:\Users\Jacob\Documents\Visual Studio 2008\Projects\Tracker\Tracker\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)/include&quot;"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
