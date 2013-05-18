@@ -30,6 +30,7 @@ TrackerConnectionHandler::TrackerConnectionHandler(const StreamSocket& sock, Soc
 TrackerConnectionHandler::~TrackerConnectionHandler()
 {
     poco_information_f1(logger_, "Disconnect from %s", sock_.peerAddress().toString() );
+	app_.RemoveOnlineUser(this->clientid);
 
     reactor_.removeEventHandler(sock_, 
                         NObserver<TrackerConnectionHandler, ReadableNotification>(*this, &TrackerConnectionHandler::onReadable));
@@ -44,9 +45,9 @@ void TrackerConnectionHandler::onReadable(const AutoPtr<ReadableNotification>& p
     NetPack pack;
     NetPack retMsg;
 
-    int ret = pack.receiveFrom( sock_ );
+    retcode_t ret = pack.receiveFrom( sock_ );
 
-    if( ret ){
+    if( ret != ERROR_OK){
         if( ret == ERROR_NET_GRACEFUL_SHUTDOWN ){
             poco_notice_f1(logger_, "graceful shutdown by remote peer : %s.", sock_.peerAddress().toString() );
         }else{

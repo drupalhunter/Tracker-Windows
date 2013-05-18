@@ -55,15 +55,8 @@ void Tracker::initialize(Application& self)
     loadConfiguration(); // load default configuration files, if present
     ServerApplication::initialize(self);
 
-    /*
-    Logger* pLogger = Logger::has("ConsoleLogger");
-    if( pLogger == NULL ){
-        poco_error(logger(), "No ConsoleLogger found!");
-    }else{
-        setLogger( *pLogger );
-        poco_notice(logger(), "ConsoleLogger set succeed.");
-    }
-    */
+	Logger& logger_ = Logger::get("FileLogger");
+	setLogger(logger_);
     Poco::Data::MySQL::Connector::registerConnector();
     dbManager_.assign(new TrackerDBManager);
     if( dbManager_.isNull() ){
