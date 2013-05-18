@@ -129,6 +129,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libprotobuf.lib"
+				AdditionalLibraryDirectories="E:\lib\Release"
 				GenerateDebugInformation="false"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
